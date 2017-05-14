@@ -11,7 +11,7 @@ width:500px;/*use according to your need*/
 
 <div class="main">
             <div id="content">
-                
+
                 <div id="form_input">
                 <?php
                 echo "<br>";
@@ -21,8 +21,6 @@ width:500px;/*use according to your need*/
 
                 echo form_label('تاریخ :', 'date');
                 echo form_input(array('name'=>'date','value'=>$date,'size'=>'20','readonly'=>'true','class'=>'inp'));echo "<br/><br/>";
-                    echo form_label('شماره دانشجویی :', 'STID');
-                echo form_input(array('name'=>'STID','value'=>'','size'=>'20','class'=>'inp'));echo "<br/><br/>";
               echo form_label('شناسه :', 'id');
                 echo form_input(array('name'=>'id','value'=>$id,'size'=>'20','readonly'=>'true','class'=>'inp'));echo "<br/><br/>";
 
@@ -40,20 +38,20 @@ width:500px;/*use according to your need*/
 
 
 
-                <input type = "file" name = "userfile" size = "20" /> 
-         <br /><br /> 
+                <input type = "file" name = "userfile" size = "20" />
+         <br /><br />
 
                     <div id="form_button">
                         <?php echo form_submit('submit', 'ادامه', "class='submit'"); ?>
-                    </div>                   
+                    </div>
                <?php echo form_close();?>
-               
 
 
-              
-    
-         
-     
-            </div> 
+
+
+
+
+
+            </div>
         </div>
         </div>

@@ -1,4 +1,4 @@
-<?php 
+<?php
                 //echo form_open('Main/composerecivers');
                 foreach ($rec as  $value) {
                     echo form_label('تاریخ :', 'date');
@@ -14,16 +14,13 @@
 
                 echo form_label('متن :', 'text');
                 echo  form_textarea(array('name'=>'text','value'=>$rec[0]->text,'size'=>'1500','class'=>'text','readonly'=>'true'));echo "<br/><br/>";
-                
-                    echo form_label('شماره دانشجویی:', 'text');
-                echo  form_textarea(array('name'=>'text','value'=>$rec[0]->stid,'size'=>'1500','class'=>'text','readonly'=>'true'));echo "<br/><br/>";
                 break;
                 }
                 ?>
                 <a href="<?php echo base_url()?>index.php/main/inbox">بازگشت</a><span style="display:inline-block; width: 40;"></span>
 		<a href="<?php echo base_url()?>index.php/main/composeletter">پاسخ</a>
                         <?php //echo form_submit('submit', 'ادامه', "class='submit'"); ?>
-                    </div>                   
+                    </div>
                <?php //echo form_close();?>
 
 <?php echo form_open('Main/messageref');?>
@@ -35,7 +32,7 @@
 <option value="<?php echo $selecteduser->user; ?>"><?php echo $selecteduser->name.'-'.$selecteduser->position; ?></option>
 <?php
 } ?>
-  
+
 </select>
 
 <input type="submit" value=" ارسال رو نوشت">
