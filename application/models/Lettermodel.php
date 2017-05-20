@@ -19,12 +19,12 @@ class Lettermodel extends CI_Model{
          	} catch (Exception $e) {
             echo $e->getMessage();
         }
-        } 
-        
-        
-    
+        }
+
+
+
 	 public function getuser($data) {
-        
+
         try {
             $this->db->reconnect();
             $sql = "CALL finduser ('".$data['u1']."', '".$data['p1']."')";
@@ -264,7 +264,7 @@ public function   setcheckedimp ($data){
             } catch (Exception $e) {
             echo $e->getMessage();
         }
-	
+
 }
 public function setcheckedrec ($data){
  try {
@@ -277,9 +277,9 @@ public function setcheckedrec ($data){
             } catch (Exception $e) {
             echo $e->getMessage();
         }
-	
+
 }
-	
+
 
 public function  getpermission($data){
 	try {
@@ -314,7 +314,7 @@ public function getlog(){
             } catch (Exception $e) {
             echo $e->getMessage();
         }
-	
+
 }
  public function  setnewuser ($data){
  try {
@@ -325,7 +325,7 @@ public function getlog(){
             } catch (Exception $e) {
             echo $e->getMessage();
         }
-	
+
 }
  public function  setpass ($data){
  try {
@@ -336,7 +336,7 @@ public function getlog(){
             } catch (Exception $e) {
             echo $e->getMessage();
         }
-	
+
 }
 public function getall($data){
 	try {
@@ -356,6 +356,42 @@ public function getallbyid($data){
             $sql = "CALL getallbyid ('".$data['user']."','".$data['id']."')";
             $query = $this->db->query($sql);
             $result=$query->result();
+            $this->db->close();
+            } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+        return $result;
+}
+public function getallpermission(){
+	try {
+            $this->db->reconnect();
+            $sql = "CALL getallpermission ()";
+            $query = $this->db->query($sql);
+            $result=$query->result();
+            $this->db->close();
+            } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+        return $result;
+}
+
+public function setpermission($data){
+	try {
+            $this->db->reconnect();
+            $sql = "CALL setpermission  ('".$data['user']."','".$data['permission']."')";
+            $query = $this->db->query($sql);
+            $this->db->close();
+            } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+        return $result;
+}
+
+public function setuser($data){
+	try {
+            $this->db->reconnect();
+            $sql = "CALL setuser ('".$data['user']."','".$data['name']."','".$data['position']."','".$data['pass']."')";
+            $query = $this->db->query($sql);
             $this->db->close();
             } catch (Exception $e) {
             echo $e->getMessage();

@@ -28,7 +28,7 @@ li a {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    
+
 }
 
 li a.v:hover {

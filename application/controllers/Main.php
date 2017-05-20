@@ -13,14 +13,14 @@ public function __construct() {
 
         	);
         	$this->load->model('lettermodel');
-        	
+
         	date_default_timezone_set("iran");
         	$data['t1']=date("Y-m-d h:i:sa");
         	$data['u1']=$this->session->userdata('u1');
             $this->lettermodel->setlog($data);
          }
          else {
-				//redirect('Login');	
+				//redirect('Login');
          	header("Location: Login");
     die();
 	         }
@@ -28,10 +28,10 @@ public function __construct() {
 
         public function inbox()
         {
-            
+
                 $user['u1']=$this->session->userdata('u1');
                 $letter['rec']=$this->lettermodel->getletterbyreciver($user);
-                
+
                 //$letter['cop']=$this->lettermodel->getletterbycop($user);
                 $letter['ref']=$this->lettermodel->getletterbyref($user);
                 $letter['rec'] = array_merge($letter['rec'], /*$letter['cop'],*/$letter['ref']);
@@ -63,7 +63,7 @@ public function __construct() {
      	    $this->load->view('header',$titleanduser);
             $this->load->view('showmessage',$letter);
             $this->load->view('footer');
-            
+
 		}
         public function messageref(){
             $headerdata['user']=$this->session->userdata('name');
@@ -86,7 +86,7 @@ public function __construct() {
      	$this->load->view('header',$data);
         $user['u1']=$this->session->userdata('u1');
         $letter['rec']=$this->lettermodel->getletterbyreciver($user);
-               
+
         $letter['cop']=$this->lettermodel->getletterbycop($user);
         $letter['ref']=$this->lettermodel->getletterbyref($user);
         $letter['imp']=$this->lettermodel->getletterbyimp($user);
@@ -104,7 +104,7 @@ public function __construct() {
 		$data['user']=$this->session->userdata('name');
 		$data['id']=$this->lettermodel->getlastid();
 		$data['id']=$data['id'][0]->id+1;
-		
+
      	$this->load->view('header',$data);
      	$this->load->view('composeview',$data);
      	$this->load->view('footer');
@@ -116,29 +116,29 @@ public function __construct() {
 		$headerdata['user']=$this->session->userdata('name');
 		$userlist['user']=$this->session->userdata('name');
 		$data=$this->input->post();
-		 $config['upload_path']   = './uploads/'; 
-         $config['allowed_types'] = 'doc|docx|jpg'; 
-         $config['max_size']      = 100;  
+		 $config['upload_path']   = './uploads/';
+         $config['allowed_types'] = 'doc|docx|jpg';
+         $config['max_size']      = 100;
          $this->load->library('upload', $config);
 			 $upload_data = $this->upload->data();
          if ( ! $this->upload->do_upload('userfile')) {
          	if ($upload_data['file_name']=="")
          	{
          		$hasfile=0;
-         		
+
          	}
          	else{
-            //$error = array('error' => $this->upload->display_errors()); 
-           // $this->load->view('upload_form', $error); 
+            //$error = array('error' => $this->upload->display_errors());
+           // $this->load->view('upload_form', $error);
             print_r($this->upload->display_errors());}
          }
-			
-         else { 
-            $data = array('upload_data' => $this->upload->data()); 
-            //$this->load->view('upload_success', $data); 
+
+         else {
+            $data = array('upload_data' => $this->upload->data());
+            //$this->load->view('upload_success', $data);
             $hasfile=1;
             $this->lettermodel-> setfile(array('id' => $data['id'], 'file'=>$upload_data['file_name']));
-            
+
          }
          $letter1['id']=$data['id'];
          $letter1['date']=$data['date'];
@@ -147,11 +147,11 @@ public function __construct() {
          $letter1['text']=$data['text'];
          $letter1['file']=$hasfile;
          $letter1['STID']=$data['STID'];
-        
+
         $this->lettermodel->setletter($letter1);
 
         $userlist['letterid']= $data['id'];
-      
+
         $userlist['userlist']=$this->lettermodel-> getuserlist();
         $this->load->view('header',$headerdata);
      	$this->load->view('reciversview',$userlist);
@@ -206,29 +206,31 @@ public function composecomplete()
      	$this->load->view('footer');
 }
 
-	public function search()
-		{
-			$user['u1']=$this->session->userdata('u1');
-                $letter['letter']=$this->lettermodel->getall($user['u1']);
-				$data['title']="تمام پیام ها";
-				$data['user']=$this->session->userdata('name');
-     			$this->load->view('header',$data);
-               $this->load->view('search',$letter);
-                $this->load->view('footer');
-		}
 
-	public function searchbyid()
+	 function searchbyid()
 		{
-			$d['user']=$this->session->userdata('u1');
-			$d['id']= $this->input->post('id');
-                $letter['letter']=$this->lettermodel->getallbyid($d);
-				$data['title']="جست و جو بر اساس شناسه";
-				$data['user']=$this->session->userdata('name');
-     			$this->load->view('header',$data);
-               $this->load->view('search',$letter);
-                $this->load->view('footer');
+			$headerdata['user']=$this->session->userdata('name');
+      $data['user']=$this->session->userdata('u1');//$this->session->userdata('name');
+			$data['id']= $this->input->get('id');
+      //echo $d['id']; $data['u1']=$this->session->userdata('u1');
+      $letter['letter']=$this->lettermodel->getallbyid($data);
+			$headerdata['title']="جست و جو بر اساس شناسه";
+     	$this->load->view('header',$headerdata);
+    $this->load->view('searchbyidview',$letter);
+//  var_dump($letter['letter']);
+// print all the available keys for the arrays of variables
+//print_r(array_keys(get_defined_vars()));
+      $this->load->view('footer');
 		}
+function search(){
 
+  $data['title']='جست و جو';
+  $data['user']=$this->session->userdata('name');
+  $this->load->view('header',$data);
+  $this->load->view('searchview',$data);
+  $this->load->view('footer');
+
+}
 	function logout()
 {
     $user_data = $this->session->all_userdata();

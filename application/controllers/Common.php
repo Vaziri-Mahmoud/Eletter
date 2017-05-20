@@ -16,7 +16,7 @@ class Common extends CI_Controller {
         	$this->load->model('lettermodel');
          }
          else {
-				//redirect('Login');	
+				//redirect('Login');
          	header("Location: Login");
 die();
 	         }
@@ -35,8 +35,8 @@ public function setting()
 		$setting['admin']=1;
 		$setting['log']=$this->lettermodel->getlog();
 		$setting['users']=$this->lettermodel->getuserlist();
+		$setting['permissions']=$this->lettermodel->getallpermission();
 	}
-
 	$this->load->view('header',$data);
 	$this->load->view('setting',$setting);
 	$this->load->view('footer');
@@ -47,6 +47,22 @@ public function delete(){
 	$this->lettermodel->deleteuser($user['users']);
 	redirect('/Main');
 }
+
+public function adduser(){
+	$data['pass'] = $this->input->post('password');
+	$data['name'] = $this->input->post('name');
+	$data['position'] = $this->input->post('position');
+	$data['user']= $this->input->post('username');
+	$data['permissions'] = $this->input->post('permissions');
+	foreach($data['permissions'] as $per){
+		$user['permission']=$per;
+		$user['user']=$this->input->post('username');
+		$this->lettermodel->setpermission($user);
+	}
+	$this->lettermodel->setuser($data);
+	redirect('/Main');
+}
+
 public function updatepass(){
 	$data['pass'] = $this->input->post('password');
 	$data['user']=$this->session->userdata('u1');
