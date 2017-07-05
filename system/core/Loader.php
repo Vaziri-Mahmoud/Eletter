@@ -6,7 +6,11 @@
  *
  * This content is released under the MIT License (MIT)
  *
+<<<<<<< HEAD
  * Copyright (c) 2014 - 2017, British Columbia Institute of Technology
+=======
+ * Copyright (c) 2014 - 2016, British Columbia Institute of Technology
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +33,11 @@
  * @package	CodeIgniter
  * @author	EllisLab Dev Team
  * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
+<<<<<<< HEAD
  * @copyright	Copyright (c) 2014 - 2017, British Columbia Institute of Technology (http://bcit.ca/)
+=======
+ * @copyright	Copyright (c) 2014 - 2016, British Columbia Institute of Technology (http://bcit.ca/)
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
  * @license	http://opensource.org/licenses/MIT	MIT License
  * @link	https://codeigniter.com
  * @since	Version 1.0.0
@@ -486,7 +494,11 @@ class CI_Loader {
 	 */
 	public function view($view, $vars = array(), $return = FALSE)
 	{
+<<<<<<< HEAD
 		return $this->_ci_load(array('_ci_view' => $view, '_ci_vars' => $this->_ci_prepare_view_vars($vars), '_ci_return' => $return));
+=======
+		return $this->_ci_load(array('_ci_view' => $view, '_ci_vars' => $this->_ci_object_to_array($vars), '_ci_return' => $return));
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
 	}
 
 	// --------------------------------------------------------------------
@@ -519,6 +531,7 @@ class CI_Loader {
 	 */
 	public function vars($vars, $val = '')
 	{
+<<<<<<< HEAD
 		$vars = is_string($vars)
 			? array($vars => $val)
 			: $this->_ci_prepare_view_vars($vars);
@@ -526,6 +539,21 @@ class CI_Loader {
 		foreach ($vars as $key => $val)
 		{
 			$this->_ci_cached_vars[$key] = $val;
+=======
+		if (is_string($vars))
+		{
+			$vars = array($vars => $val);
+		}
+
+		$vars = $this->_ci_object_to_array($vars);
+
+		if (is_array($vars) && count($vars) > 0)
+		{
+			foreach ($vars as $key => $val)
+			{
+				$this->_ci_cached_vars[$key] = $val;
+			}
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
 		}
 
 		return $this;
@@ -585,6 +613,7 @@ class CI_Loader {
 	 */
 	public function helper($helpers = array())
 	{
+<<<<<<< HEAD
 		is_array($helpers) OR $helpers = array($helpers);
 		foreach ($helpers as &$helper)
 		{
@@ -593,13 +622,21 @@ class CI_Loader {
 			$filename = strtolower(preg_replace('#(_helper)?(.php)?$#i', '', $filename)).'_helper';
 			$helper   = $filepath.$filename;
 
+=======
+		foreach ($this->_ci_prep_filename($helpers, '_helper') as $helper)
+		{
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
 			if (isset($this->_ci_helpers[$helper]))
 			{
 				continue;
 			}
 
 			// Is this a helper extension request?
+<<<<<<< HEAD
 			$ext_helper = config_item('subclass_prefix').$filename;
+=======
+			$ext_helper = config_item('subclass_prefix').$helper;
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
 			$ext_loaded = FALSE;
 			foreach ($this->_ci_helper_paths as $path)
 			{
@@ -934,7 +971,22 @@ class CI_Loader {
 		 * the two types and cache them so that views that are embedded within
 		 * other views can have access to these variables.
 		 */
+<<<<<<< HEAD
 		empty($_ci_vars) OR $this->_ci_cached_vars = array_merge($this->_ci_cached_vars, $_ci_vars);
+=======
+		if (is_array($_ci_vars))
+		{
+			foreach (array_keys($_ci_vars) as $key)
+			{
+				if (strncmp($key, '_ci_', 4) === 0)
+				{
+					unset($_ci_vars[$key]);
+				}
+			}
+
+			$this->_ci_cached_vars = array_merge($this->_ci_cached_vars, $_ci_vars);
+		}
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
 		extract($this->_ci_cached_vars);
 
 		/*
@@ -1365,6 +1417,7 @@ class CI_Loader {
 	// --------------------------------------------------------------------
 
 	/**
+<<<<<<< HEAD
 	 * Prepare variables for _ci_vars, to be later extract()-ed inside views
 	 *
 	 * Converts objects to associative arrays and filters-out internal
@@ -1391,6 +1444,19 @@ class CI_Loader {
 		}
 
 		return $vars;
+=======
+	 * CI Object to Array translator
+	 *
+	 * Takes an object as input and converts the class variables to
+	 * an associative array with key/value pairs.
+	 *
+	 * @param	object	$object	Object data to translate
+	 * @return	array
+	 */
+	protected function _ci_object_to_array($object)
+	{
+		return is_object($object) ? get_object_vars($object) : $object;
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
 	}
 
 	// --------------------------------------------------------------------
@@ -1408,4 +1474,37 @@ class CI_Loader {
 		$CI =& get_instance();
 		return $CI->$component;
 	}
+<<<<<<< HEAD
+=======
+
+	// --------------------------------------------------------------------
+
+	/**
+	 * Prep filename
+	 *
+	 * This function prepares filenames of various items to
+	 * make their loading more reliable.
+	 *
+	 * @param	string|string[]	$filename	Filename(s)
+	 * @param 	string		$extension	Filename extension
+	 * @return	array
+	 */
+	protected function _ci_prep_filename($filename, $extension)
+	{
+		if ( ! is_array($filename))
+		{
+			return array(strtolower(str_replace(array($extension, '.php'), '', $filename).$extension));
+		}
+		else
+		{
+			foreach ($filename as $key => $val)
+			{
+				$filename[$key] = strtolower(str_replace(array($extension, '.php'), '', $val).$extension);
+			}
+
+			return $filename;
+		}
+	}
+
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
 }

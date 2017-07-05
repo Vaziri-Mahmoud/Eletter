@@ -6,7 +6,11 @@
  *
  * This content is released under the MIT License (MIT)
  *
+<<<<<<< HEAD
  * Copyright (c) 2014 - 2017, British Columbia Institute of Technology
+=======
+ * Copyright (c) 2014 - 2016, British Columbia Institute of Technology
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +33,11 @@
  * @package	CodeIgniter
  * @author	EllisLab Dev Team
  * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
+<<<<<<< HEAD
  * @copyright	Copyright (c) 2014 - 2017, British Columbia Institute of Technology (http://bcit.ca/)
+=======
+ * @copyright	Copyright (c) 2014 - 2016, British Columbia Institute of Technology (http://bcit.ca/)
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
  * @license	http://opensource.org/licenses/MIT	MIT License
  * @link	https://codeigniter.com
  * @since	Version 1.0.0
@@ -1218,6 +1226,7 @@ class CI_Upload {
 		// We'll need this to validate the MIME info string (e.g. text/plain; charset=us-ascii)
 		$regexp = '/^([a-z\-]+\/[a-z0-9\-\.\+]+)(;\s.+)?$/';
 
+<<<<<<< HEAD
 		/**
 		 * Fileinfo extension - most reliable method
 		 *
@@ -1243,6 +1252,23 @@ class CI_Upload {
 					$this->file_type = $matches[1];
 					return;
 				}
+=======
+		// Fileinfo extension - most reliable method
+		$finfo = @finfo_open(FILEINFO_MIME);
+		if (is_resource($finfo)) // It is possible that a FALSE value is returned, if there is no magic MIME database file found on the system
+		{
+			$mime = @finfo_file($finfo, $file['tmp_name']);
+			finfo_close($finfo);
+
+			/* According to the comments section of the PHP manual page,
+			 * it is possible that this function returns an empty string
+			 * for some files (e.g. if they don't exist in the magic MIME database)
+			 */
+			if (is_string($mime) && preg_match($regexp, $mime, $matches))
+			{
+				$this->file_type = $matches[1];
+				return;
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
 			}
 		}
 

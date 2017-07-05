@@ -168,6 +168,12 @@ $config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
 | By default CodeIgniter uses search-engine friendly segment based URLs:
 | example.com/who/what/where/
 |
+<<<<<<< HEAD
+=======
+| By default CodeIgniter enables access to the $_GET array.  If for some
+| reason you would like to disable it, set 'allow_get_array' to FALSE.
+|
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
 | You can optionally enable standard query string based URLs:
 | example.com?who=me&what=something&where=here
 |
@@ -182,6 +188,10 @@ $config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
 | use segment based URLs.
 |
 */
+<<<<<<< HEAD
+=======
+$config['allow_get_array'] = TRUE;
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
 $config['enable_query_strings'] = FALSE;
 $config['controller_trigger'] = 'c';
 $config['function_trigger'] = 'm';
@@ -189,6 +199,7 @@ $config['directory_trigger'] = 'd';
 
 /*
 |--------------------------------------------------------------------------
+<<<<<<< HEAD
 | Allow $_GET array
 |--------------------------------------------------------------------------
 |
@@ -203,6 +214,8 @@ $config['allow_get_array'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------
+=======
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
 | Error Logging Threshold
 |--------------------------------------------------------------------------
 |
@@ -414,8 +427,13 @@ $config['cookie_httponly'] 	= FALSE;
 | Determines whether to standardize newline characters in input data,
 | meaning to replace \r\n, \r, \n occurrences with the PHP_EOL value.
 |
+<<<<<<< HEAD
 | WARNING: This feature is DEPRECATED and currently available only
 |          for backwards compatibility purposes!
+=======
+| This is particularly useful for portability between UNIX-based OSes,
+| (usually \n) and Windows (\r\n).
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
 |
 */
 $config['standardize_newlines'] = FALSE;

@@ -4,7 +4,11 @@
  *
  * Sphinx JavaScript utilities for all documentation.
  *
+<<<<<<< HEAD
  * :copyright: Copyright 2007-2014 by the Sphinx team, see AUTHORS.
+=======
+ * :copyright: Copyright 2007-2015 by the Sphinx team, see AUTHORS.
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
  * :license: BSD, see LICENSE for details.
  *
  */
@@ -91,6 +95,33 @@ jQuery.fn.highlightText = function(text, className) {
   });
 };
 
+<<<<<<< HEAD
+=======
+/*
+ * backward compatibility for jQuery.browser
+ * This will be supported until firefox bug is fixed.
+ */
+if (!jQuery.browser) {
+  jQuery.uaMatch = function(ua) {
+    ua = ua.toLowerCase();
+
+    var match = /(chrome)[ \/]([\w.]+)/.exec(ua) ||
+      /(webkit)[ \/]([\w.]+)/.exec(ua) ||
+      /(opera)(?:.*version|)[ \/]([\w.]+)/.exec(ua) ||
+      /(msie) ([\w.]+)/.exec(ua) ||
+      ua.indexOf("compatible") < 0 && /(mozilla)(?:.*? rv:([\w.]+)|)/.exec(ua) ||
+      [];
+
+    return {
+      browser: match[ 1 ] || "",
+      version: match[ 2 ] || "0"
+    };
+  };
+  jQuery.browser = {};
+  jQuery.browser[jQuery.uaMatch(navigator.userAgent).browser] = true;
+}
+
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
 /**
  * Small JavaScript module for the documentation.
  */
@@ -152,9 +183,16 @@ var Documentation = {
 
   /**
    * workaround a firefox stupidity
+<<<<<<< HEAD
    */
   fixFirefoxAnchorBug : function() {
     if (document.location.hash && $.browser.mozilla)
+=======
+   * see: https://bugzilla.mozilla.org/show_bug.cgi?id=645075
+   */
+  fixFirefoxAnchorBug : function() {
+    if (document.location.hash)
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
       window.setTimeout(function() {
         document.location.href += '';
       }, 10);

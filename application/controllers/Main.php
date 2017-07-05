@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Main extends CI_Controller {
 public function __construct() {
         parent::__construct();
+<<<<<<< HEAD
          $this->load->library('session');
          //$loged=$this->session->userdata();
          //print_r($loged);
@@ -244,4 +245,33 @@ function search(){
     $this->session->sess_destroy();
     redirect('login');
 }
+=======
+        $this->load->helper(
+        	 array('form','url')
+
+        	);
+        $this->load->model('lettermodel');
+    }
+	/**
+	 * Index Page for this controller.
+	 *
+	 * Maps to the following URL
+	 * 		http://example.com/index.php/welcome
+	 *	- or -
+	 * 		http://example.com/index.php/welcome/index
+	 *	- or -
+	 * Since this controller is set as the default controller in
+	 * config/routes.php, it's displayed at http://example.com/
+	 *
+	 * So any other public methods not prefixed with an underscore will
+	 * map to /index.php/welcome/<method_name>
+	 * @see https://codeigniter.com/user_guide/general/urls.html
+	 */
+	public function index()
+	{
+		echo "Hi";
+		
+	}
+	
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
 }

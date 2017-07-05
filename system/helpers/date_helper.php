@@ -6,7 +6,11 @@
  *
  * This content is released under the MIT License (MIT)
  *
+<<<<<<< HEAD
  * Copyright (c) 2014 - 2017, British Columbia Institute of Technology
+=======
+ * Copyright (c) 2014 - 2016, British Columbia Institute of Technology
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +33,11 @@
  * @package	CodeIgniter
  * @author	EllisLab Dev Team
  * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
+<<<<<<< HEAD
  * @copyright	Copyright (c) 2014 - 2017, British Columbia Institute of Technology (http://bcit.ca/)
+=======
+ * @copyright	Copyright (c) 2014 - 2016, British Columbia Institute of Technology (http://bcit.ca/)
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
  * @license	http://opensource.org/licenses/MIT	MIT License
  * @link	https://codeigniter.com
  * @since	Version 1.0.0
@@ -496,7 +504,10 @@ if ( ! function_exists('nice_date'))
 	 * Turns many "reasonably-date-like" strings into something
 	 * that is actually useful. This only works for dates after unix epoch.
 	 *
+<<<<<<< HEAD
 	 * @deprecated	3.1.3	Use DateTime::createFromFormat($input_format, $input)->format($output_format);
+=======
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
 	 * @param	string	The terribly formatted date-like string
 	 * @param	string	Date format to return (same as php date function)
 	 * @return	string
@@ -530,9 +541,15 @@ if ( ! function_exists('nice_date'))
 		}
 
 		// Date Like: YYYYMMDD
+<<<<<<< HEAD
 		if (preg_match('/^\d{8}$/i', $bad_date, $matches))
 		{
 			return DateTime::createFromFormat('Ymd', $bad_date)->format($format);
+=======
+		if (preg_match('/^(\d{2})\d{2}(\d{4})$/i', $bad_date, $matches))
+		{
+			return date($format, strtotime($matches[1].'/01/'.$matches[2]));
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
 		}
 
 		// Date Like: MM-DD-YYYY __or__ M-D-YYYY (or anything in between)

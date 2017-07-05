@@ -6,7 +6,11 @@
  *
  * This content is released under the MIT License (MIT)
  *
+<<<<<<< HEAD
  * Copyright (c) 2014 - 2017, British Columbia Institute of Technology
+=======
+ * Copyright (c) 2014 - 2016, British Columbia Institute of Technology
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +33,11 @@
  * @package	CodeIgniter
  * @author	EllisLab Dev Team
  * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
+<<<<<<< HEAD
  * @copyright	Copyright (c) 2014 - 2017, British Columbia Institute of Technology (http://bcit.ca/)
+=======
+ * @copyright	Copyright (c) 2014 - 2016, British Columbia Institute of Technology (http://bcit.ca/)
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
  * @license	http://opensource.org/licenses/MIT	MIT License
  * @link	https://codeigniter.com
  * @since	Version 1.0.0
@@ -339,11 +347,19 @@ class CI_Xmlrpcs extends CI_Xmlrpc {
 		//-------------------------------------
 
 		$method_parts = explode('.', $this->methods[$methName]['function']);
+<<<<<<< HEAD
 		$objectCall   = ! empty($method_parts[1]);
 
 		if ($system_call === TRUE)
 		{
 			if ( ! is_callable(array($this, $method_parts[1])))
+=======
+		$objectCall = (isset($method_parts[1]) && $method_parts[1] !== '');
+
+		if ($system_call === TRUE)
+		{
+			if ( ! is_callable(array($this,$method_parts[1])))
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
 			{
 				return new XML_RPC_Response(0, $this->xmlrpcerr['unknown_method'], $this->xmlrpcstr['unknown_method']);
 			}
@@ -400,11 +416,19 @@ class CI_Xmlrpcs extends CI_Xmlrpc {
 			}
 			elseif ($this->object === FALSE)
 			{
+<<<<<<< HEAD
 				return get_instance()->{$method_parts[1]}($m);
 			}
 			else
 			{
 				return $this->object->{$method_parts[1]}($m);
+=======
+				return get_instance()->$method_parts[1]($m);
+			}
+			else
+			{
+				return $this->object->$method_parts[1]($m);
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
 			}
 		}
 		else

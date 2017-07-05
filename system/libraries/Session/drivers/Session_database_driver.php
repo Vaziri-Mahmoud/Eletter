@@ -6,7 +6,11 @@
  *
  * This content is released under the MIT License (MIT)
  *
+<<<<<<< HEAD
  * Copyright (c) 2014 - 2017, British Columbia Institute of Technology
+=======
+ * Copyright (c) 2014 - 2016, British Columbia Institute of Technology
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +33,11 @@
  * @package	CodeIgniter
  * @author	EllisLab Dev Team
  * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
+<<<<<<< HEAD
  * @copyright	Copyright (c) 2014 - 2017, British Columbia Institute of Technology (http://bcit.ca/)
+=======
+ * @copyright	Copyright (c) 2014 - 2016, British Columbia Institute of Technology (http://bcit.ca/)
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
  * @license	http://opensource.org/licenses/MIT	MIT License
  * @link	https://codeigniter.com
  * @since	Version 3.0.0
@@ -208,12 +216,17 @@ class CI_Session_database_driver extends CI_Session_driver implements SessionHan
 		// Prevent previous QB calls from messing with our queries
 		$this->_db->reset_query();
 
+<<<<<<< HEAD
 		if ($this->_lock === FALSE)
 		{
 			return $this->_fail();
 		}
 		// Was the ID regenerated?
 		elseif ($session_id !== $this->_session_id)
+=======
+		// Was the ID regenerated?
+		if ($session_id !== $this->_session_id)
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
 		{
 			if ( ! $this->_release_lock() OR ! $this->_get_lock($session_id))
 			{
@@ -223,6 +236,13 @@ class CI_Session_database_driver extends CI_Session_driver implements SessionHan
 			$this->_row_exists = FALSE;
 			$this->_session_id = $session_id;
 		}
+<<<<<<< HEAD
+=======
+		elseif ($this->_lock === FALSE)
+		{
+			return $this->_fail();
+		}
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
 
 		if ($this->_row_exists === FALSE)
 		{
@@ -354,7 +374,11 @@ class CI_Session_database_driver extends CI_Session_driver implements SessionHan
 	{
 		if ($this->_platform === 'mysql')
 		{
+<<<<<<< HEAD
 			$arg = md5($session_id.($this->_config['match_ip'] ? '_'.$_SERVER['REMOTE_ADDR'] : ''));
+=======
+			$arg = $session_id.($this->_config['match_ip'] ? '_'.$_SERVER['REMOTE_ADDR'] : '');
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
 			if ($this->_db->query("SELECT GET_LOCK('".$arg."', 300) AS ci_session_lock")->row()->ci_session_lock)
 			{
 				$this->_lock = $arg;
@@ -417,4 +441,8 @@ class CI_Session_database_driver extends CI_Session_driver implements SessionHan
 
 		return parent::_release_lock();
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c

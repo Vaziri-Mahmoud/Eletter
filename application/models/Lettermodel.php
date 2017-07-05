@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Lettermodel extends CI_Model{
+<<<<<<< HEAD
     public function __construct() {
         parent::__construct();
 
@@ -30,6 +31,36 @@ class Lettermodel extends CI_Model{
             $sql = "CALL finduser ('".$data['u1']."', '".$data['p1']."')";
             //$uname=$this->db->escape_str($data['u1']);
            // $pass=$this->db->escape_str($data['p1']);
+=======
+public function __construct() {
+        parent::__construct();
+
+        
+        $this->load->database();
+    }
+	/**
+	 * Index Page for this controller.
+	 *
+	 * Maps to the following URL
+	 * 		http://example.com/index.php/welcome
+	 *	- or -
+	 * 		http://example.com/index.php/welcome/index
+	 *	- or -
+	 * Since this controller is set as the default controller in
+	 * config/routes.php, it's displayed at http://example.com/
+	 *
+	 * So any other public methods not prefixed with an underscore will
+	 * map to /index.php/welcome/<method_name>
+	 * @see https://codeigniter.com/user_guide/general/urls.html
+	 */
+	 public function getuser($data) {
+        
+        try {
+            $this->db->reconnect();
+            $sql = "CALL finduser (?, ?)";
+            $uname=$this->db->escape_str($data['u1']);
+            $pass=$this->db->escape_str($data['p1']);
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
             $query = $this->db->query($sql,$data);
 			$result=$query->result();
          	$this->db->close();
@@ -37,6 +68,7 @@ class Lettermodel extends CI_Model{
             echo $e->getMessage();
         }
         return $result;
+<<<<<<< HEAD
     }
 
     public function getletterbyreciver($data){
@@ -415,3 +447,10 @@ public function updatepermission($data){
 
 
 ?>
+=======
+        //print_r($data); For test
+        //if (1)//if find in database 
+       // $this->load->view("view_form", $data);
+    }
+}
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c

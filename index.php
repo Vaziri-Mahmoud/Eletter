@@ -1,5 +1,6 @@
 <?php
 /**
+<<<<<<< HEAD
  * CodeIgniter
  *
  * An open source application development framework for PHP
@@ -33,6 +34,12 @@
  * @license	http://opensource.org/licenses/MIT	MIT License
  * @link	https://codeigniter.com
  * @since	Version 1.0.0
+=======
+ *
+ * @package	Eletter
+ * @author	Mahmoud Z Vaziri
+ * @license	https://www.gnu.org/licenses/gpl-3.0.en.html	GPL3.0 License
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
  * @filesource
  */
 

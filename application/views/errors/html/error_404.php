@@ -59,7 +59,10 @@ p {
 	<div id="container">
 		<h1><?php echo $heading; ?></h1>
 		<?php echo $message; ?>
+<<<<<<< HEAD
 		<h3>صفحه مورد نظر یافت نشد . (لطفا از درستی آدرس مطمین شوید).</h3>
+=======
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
 	</div>
 </body>
 </html>

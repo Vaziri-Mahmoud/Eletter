@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ###################
 What is CodeIgniter
 ###################
@@ -68,3 +69,9 @@ Acknowledgement
 
 The CodeIgniter team would like to thank EllisLab, all the
 contributors to the CodeIgniter project and you, the CodeIgniter user.
+=======
+Eletter is a electronic letter app .
+Under GPL3.0 (https://www.gnu.org/licenses/gpl-3.0.en.html)
+Created by Codeigniter framwork (https://www.codeigniter.com/)
+Licence of Codeigniter is MIT (https://www.codeigniter.com/userguide3/license.htm)
+>>>>>>> 09ab9f107d724c8185a0269c6dbae278064e9c6c
