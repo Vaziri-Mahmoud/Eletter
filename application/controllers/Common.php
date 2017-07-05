@@ -57,7 +57,7 @@ public function adduser(){
 	foreach($data['permissions'] as $per){
 		$user['permission']=$per;
 		$user['user']=$this->input->post('username');
-		$this->lettermodel->setpermission($user);
+		$this->lettermodel->setpermission($user);//***
 	}
 	$this->lettermodel->setuser($data);
 	redirect('/Main');
@@ -65,9 +65,19 @@ public function adduser(){
 
 public function updatepass(){
 	$data['pass'] = $this->input->post('password');
-	$data['user']=$this->session->userdata('u1');
+	$data['permissions'] = $this->input->post('permissions');
 
 	$this->lettermodel->setpass($data);
+	redirect('/Main');
+}
+public function updatepermission(){
+	$p['permissions'] = $this->input->post('permissions');
+
+	foreach($p['permissions'] as $per){
+		$data['permission']=$per;
+		$data['users'] = $this->input->post('users1');
+		$this->lettermodel->setpermission($data);//***
+	}
 	redirect('/Main');
 }
 

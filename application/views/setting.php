@@ -34,9 +34,29 @@ if($admin==1){?>
 </select>
 <input type="submit" value="حذف" name="submit">
  <?php echo form_close();?>
+
+ <?php echo form_open('common/updatepermission');?>
+ <label > تغییر دسترسی </label>
+ <label> کاربر </label>  <select name="users1"  >
+  	<?php
+   foreach ($users as $value) {?>
+  	<option value="<?php echo $value->user; ?>"><?php echo $value->name.'-'.$value->position; ?></option><br>
+  <?php
+  } ?>
+  </select>
+ <label>دسترسی ها </label>  <select name="permissions[]"  multiple>
+ 	<?php foreach ($permissions as $per) {?>
+ 	<option value="<?php echo $per->role; ?>"><?php echo $per->role; ?></option>
+
+ 	<?php
+ 	} ?>
+ </select>
+<input type="submit" value="انجام" name="submit">
+  <?php echo form_close();?>
 <?php
 }?>
-
+<br>
+<br>
 <?php echo form_open('common/updatepass');?>
 <label>تغییر رمز</label>
 <input type="password" name="password">

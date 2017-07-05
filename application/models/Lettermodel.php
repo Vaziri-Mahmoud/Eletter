@@ -42,7 +42,7 @@ class Lettermodel extends CI_Model{
     public function getletterbyreciver($data){
     	try {
          	$this->db->reconnect();
-            $sql = "CALL  getletterbyreciver ('". $data['u1'].'reciver'."')";
+            $sql = "CALL  getletterbyreciver ('". $data['u1']."',"."'reciver')";
             //$logdata['u1']=$this->db->escape_str($data['u1']);
             $query = $this->db->query($sql);
             //$query=$newdb->query($sql,$data);
@@ -56,7 +56,7 @@ class Lettermodel extends CI_Model{
     public function getletterbycop($data){
     	try {
          	$this->db->reconnect();
-            $sql = "CALL  getletterbyreciver ('". $data['u1']."')";
+            $sql = "CALL  getletterbyreciver ('". $data['u1']."',"."'cop')";
             //$logdata['u1']=$this->db->escape_str($data['u1']);
             $query = $this->db->query($sql);
             //$query=$newdb->query($sql,$data);
@@ -70,7 +70,7 @@ class Lettermodel extends CI_Model{
     public function getletterbyref($data){
     	try {
          	$this->db->reconnect();
-            $sql = "CALL  getletterbyreciver ('". $data['u1']."')";
+            $sql = "CALL  getletterbyreciver  ('". $data['u1']."',"."'ref')";
             //$logdata['u1']=$this->db->escape_str($data['u1']);
             $query = $this->db->query($sql);
             //$query=$newdb->query($sql,$data);
@@ -102,7 +102,7 @@ class Lettermodel extends CI_Model{
     public function  setletter($data){
     	  try {
             $this->db->reconnect();
-            $sql = "CALL setletter ('".$data['id']."','".$data['date']."','".$data['sender']."','".$data['subject']."','".$data['text']."','".$data['file']."','".$data['STID']."')";
+            $sql = "CALL setletter ('".$data['id']."','".$data['date']."','".$data['sender']."','".$data['subject']."','".$data['text']."','".$data['file']."')";
             //$logdata['u1']=$this->db->escape_str($data['u1']);
             //$query=$newdb->query($sql,$data);
             $this->db->query($sql);
@@ -319,7 +319,7 @@ public function getlog(){
  public function  setnewuser ($data){
  try {
             $this->db->reconnect();
-            $sql = "CALL  setnewuser ('".$data['name']."','".$data['puser']."','".$data['ppos']."','".$data['ppass']."')";;
+            $sql = "CALL  setnewuser ('".$data['name']."','".$data['puser']."','".$data['ppos']."','".$data['ppass']."')";
             $this->db->query($sql);
             $this->db->close();
             } catch (Exception $e) {
@@ -390,7 +390,7 @@ public function setpermission($data){
 public function setuser($data){
 	try {
             $this->db->reconnect();
-            $sql = "CALL setuser ('".$data['user']."','".$data['name']."','".$data['position']."','".$data['pass']."')";
+            $sql = "CALL setnewuser ('".$data['user']."','".$data['name']."','".$data['position']."','".$data['pass']."')";//setuser
             $query = $this->db->query($sql);
             $this->db->close();
             } catch (Exception $e) {
@@ -398,6 +398,19 @@ public function setuser($data){
         }
         return $result;
 }
+public function updatepermission($data){
+  try {
+          //  $this->db->reconnect();
+          //  $sql = "CALL updatepermission  ('".$data['user']."','".$data['permission']."')";
+          //  $query = $this->db->query($sql);
+          //  $this->db->close();
+          } catch (Exception $e) {
+          //  echo $e->getMessage();
+        }
+      //  return $result;
+      return "For Change permisions NOW Is Empty!!!";
+}
+
 }
 
 

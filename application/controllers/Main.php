@@ -51,13 +51,13 @@ public function __construct() {
 		public function showmessage(){
 	    $data['id'] = $this->input->get('id');
 	    $data['u1']=$this->session->userdata('u1');
-            $letter['rec']=$this->lettermodel->getbyreciverid($data);
+        $letter['rec']=$this->lettermodel->getbyreciverid($data);
 	    $letter['cop']=$this->lettermodel->getbycopid($data);
-            $letter['ref']=$this->lettermodel->getbyrefid($data);
-            $letter['imp']=$this->lettermodel->getbyimpid($data);
-            $titleanduser['title']="دریافتی ها";
+        $letter['ref']=$this->lettermodel->getbyrefid($data);
+        $letter['imp']=$this->lettermodel->getbyimpid($data);
+        $titleanduser['title']="دریافتی ها";
 	    $titleanduser['user']=$this->session->userdata('name');
-                $letter['userlist']=$this->lettermodel-> getuserlist();
+        $letter['userlist']=$this->lettermodel-> getuserlist();
 
 	    $letter['rec'] = array_merge($letter['rec'], $letter['cop'],$letter['rec'],$letter['imp']);
      	    $this->load->view('header',$titleanduser);
@@ -74,7 +74,10 @@ public function __construct() {
           //  print_r($a);
 			$this->lettermodel-> setref(array('id' => $data['id'],'user' =>$value));
 		}
+
 	}
+  $this->load->view('composecomplete', $data);
+
         }
 
 	public function index()
@@ -146,7 +149,6 @@ public function __construct() {
          $letter1['subject']=$data['subject'];
          $letter1['text']=$data['text'];
          $letter1['file']=$hasfile;
-         $letter1['STID']=$data['STID'];
 
         $this->lettermodel->setletter($letter1);
 
